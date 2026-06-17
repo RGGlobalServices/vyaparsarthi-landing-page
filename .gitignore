@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+dist/
+.DS_Store
+*.log
+.env*
+!.env.example
+next-env.d.ts
+*.tsbuildinfo
+
+# IDE / tool local state
+.vscode/
+.idea/
+
+# Lockfiles — generated per-platform (avoids cross-OS native dep breakage)
+package-lock.json
