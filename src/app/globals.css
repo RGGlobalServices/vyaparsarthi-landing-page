@@ -1,8 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #6366f1;
-  --accent: #06b6d4;
+  /* Primary: Teal/Mint accent */
+  --primary: #27DEBF;
+  --primary-hover: #22C2A7;
+  --primary-light: rgba(39, 222, 191, 0.1);
+  --primary-border: rgba(39, 222, 191, 0.3);
+
+  /* Secondary: Dark teal for headings */
+  --secondary: #204341;
+
+  /* Blue accent for testimonials & panels */
+  --blue: #2460DA;
+  --blue-light: #F3F9FF;
+
+  /* Text hierarchy */
+  --text-heading: #1a2e2c;
+  --text-body: #667E7C;
+  --text-muted: #94a3b8;
+
+  /* Surfaces */
+  --bg-page: #ffffff;
+  --bg-card: #ffffff;
+  --bg-panel: #F3F9FF;
+  --border-light: #e2e8f0;
+  --border-lighter: #f1f5f9;
 }
 
 html {
@@ -11,12 +33,82 @@ html {
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: #0f172a;
-  color: #e2e8f0;
+  background: var(--bg-page);
+  color: var(--text-heading);
   overflow-x: hidden;
 }
 
 ::selection {
-  background: #6366f1;
-  color: white;
+  background: var(--primary);
+  color: var(--secondary);
+}
+
+/* Wave section divider utility */
+.wave-divider {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Teal accent underline for section titles */
+.section-underline {
+  display: block;
+  width: 5rem;
+  height: 0.25rem;
+  background: var(--primary);
+  border-radius: 9999px;
+  margin: 1rem auto 0;
+}
+
+/* Smooth entrance animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out both;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-panel);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
 }

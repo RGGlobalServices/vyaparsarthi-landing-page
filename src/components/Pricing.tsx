@@ -67,9 +67,9 @@ const plans = [
 ];
 
 const colorMap: Record<string, { ring: string; badge: string; price: string; btn: string; activeBorder: string }> = {
-  sky:    { ring: 'ring-sky-500/30',    badge: 'bg-sky-500/15 text-sky-400 ring-1 ring-sky-500/30',       price: 'text-sky-400',    btn: 'from-sky-500 to-cyan-500 shadow-sky-500/25',        activeBorder: 'border-sky-500/60 ring-1 ring-sky-500/30' },
-  indigo: { ring: 'ring-indigo-500/30', badge: 'bg-indigo-500/15 text-indigo-300 ring-1 ring-indigo-500/30', price: 'text-indigo-300', btn: 'from-indigo-500 to-violet-500 shadow-indigo-500/25', activeBorder: 'border-indigo-500/60 ring-1 ring-indigo-500/30' },
-  purple: { ring: 'ring-purple-500/30', badge: 'bg-purple-500/15 text-purple-400 ring-1 ring-purple-500/30', price: 'text-purple-400', btn: 'from-purple-500 to-pink-500 shadow-purple-500/25',   activeBorder: 'border-purple-500/60 ring-1 ring-purple-500/30' },
+  sky:    { ring: 'ring-sky-500/10',    badge: 'bg-sky-50 text-sky-700 border border-sky-100',       price: 'text-sky-600',    btn: 'border-2 border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300',        activeBorder: 'border-[#27DEBF] ring-2 ring-[#27DEBF]/10' },
+  indigo: { ring: 'ring-[#27DEBF]/10', badge: 'bg-[#27DEBF]/10 text-[#204341] border border-[#27DEBF]/20', price: 'text-[#204341]', btn: 'bg-[#27DEBF] text-[#204341] hover:bg-[#22C2A7] font-bold shadow-md shadow-[#27DEBF]/10 hover:shadow-lg', activeBorder: 'border-[#27DEBF] ring-2 ring-[#27DEBF]/10' },
+  purple: { ring: 'ring-purple-500/10', badge: 'bg-purple-50 text-purple-700 border border-purple-100', price: 'text-purple-600', btn: 'border-2 border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300',   activeBorder: 'border-[#27DEBF] ring-2 ring-[#27DEBF]/10' },
 };
 
 // Plan tier order for upgrade/downgrade labelling.
@@ -112,13 +112,14 @@ export default function Pricing() {
   const isTrial = subStatus === 'trial';
 
   return (
-    <section id="pricing" className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+    <section id="pricing" className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8 bg-slate-50/30">
       <div className="mx-auto max-w-7xl">
-        <div className="mx-auto mb-16 max-w-2xl text-center">
-          <h2 className="bg-linear-to-r from-indigo-400 to-cyan-400 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl">
+        <div className="mx-auto mb-20 max-w-2xl text-center">
+          <h2 className="text-3xl font-bold text-[#1a2e2c] sm:text-4xl">
             Simple, Honest Pricing
           </h2>
-          <p className="mt-4 text-lg text-slate-400">
+          <div className="w-20 h-1 bg-[#27DEBF] mx-auto mt-4 rounded-full" />
+          <p className="mt-4 text-lg text-[#667E7C]">
             Start with a 7-day free trial — get [14 days with referral code]. No credit card required.
           </p>
         </div>
@@ -128,7 +129,7 @@ export default function Pricing() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-80px' }}
-          className="grid gap-8 lg:grid-cols-3 max-w-6xl mx-auto items-start"
+          className="grid gap-8 lg:grid-cols-3 max-w-6xl mx-auto items-stretch"
         >
           {plans.map((plan) => {
             const isCurrent = currentPlan === plan.key || (plan.key === 'shop' && currentPlan === 'starter');
@@ -138,14 +139,14 @@ export default function Pricing() {
               <motion.div
                 key={plan.key}
                 variants={item}
-                className={`relative flex flex-col rounded-2xl border bg-slate-800/40 p-8 transition-all duration-300 hover:-translate-y-1 ${
-                  isActive ? c.activeBorder : 'border-slate-700/50 hover:border-slate-600/50'
+                className={`relative flex flex-col rounded-2xl border bg-white p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg ${
+                  isActive ? `${c.activeBorder} border-[#27DEBF]` : 'border-slate-200 hover:border-slate-300 hover:shadow-xl'
                 }`}
               >
                 {/* Popular badge */}
                 {plan.popular && !isActive && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="rounded-full bg-indigo-500 px-4 py-1 text-[11px] font-black uppercase tracking-widest text-white shadow-lg shadow-indigo-500/40">
+                    <span className="rounded-full bg-[#27DEBF] px-4 py-1 text-[11px] font-black uppercase tracking-widest text-[#204341] shadow-md shadow-[#27DEBF]/20">
                       Most Popular
                     </span>
                   </div>
@@ -153,61 +154,61 @@ export default function Pricing() {
 
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="mb-1 flex items-center gap-3">
-                    <h3 className="text-xl font-bold text-white">{plan.name}</h3>
+                    <h3 className="text-xl font-bold text-[#1a2e2c]">{plan.name}</h3>
                     {isCurrent && (
-                      <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide ring-1 ${
+                      <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide border ${
                         isPaid
-                          ? 'bg-emerald-500/15 text-emerald-400 ring-emerald-500/30'
-                          : 'bg-amber-500/15 text-amber-400 ring-amber-500/30'
+                          ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                          : 'bg-amber-50 text-amber-700 border-amber-200'
                       }`}>
                         {isPaid ? 'Active' : 'On Trial'}
                       </span>
                     )}
                   </div>
-                  <p className="mb-5 text-sm text-slate-400">{plan.desc}</p>
+                  <p className="mb-5 text-sm text-[#667E7C]">{plan.desc}</p>
 
                   <div className="mb-6">
                     {plan.originalPrice && (
                       <div className="mb-1 flex items-center gap-2">
-                        <span className="text-sm text-slate-500 line-through">₹{plan.originalPrice}</span>
-                        <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-bold text-emerald-400 ring-1 ring-emerald-500/30">
+                        <span className="text-sm text-slate-400 line-through">₹{plan.originalPrice}</span>
+                        <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-bold text-emerald-700 border border-emerald-100">
                           {Math.round((1 - plan.price / plan.originalPrice) * 100)}% OFF
                         </span>
                       </div>
                     )}
                     <div className="flex items-baseline gap-1">
                       <span className={`text-4xl font-black ${c.price}`}>₹{plan.price}</span>
-                      <span className="text-sm text-slate-400">/month</span>
+                      <span className="text-sm text-[#667E7C]">/month</span>
                     </div>
-                    <p className="text-xs text-slate-500 mt-1">7-day free trial · [14 days with referral code]</p>
+                    <p className="text-xs text-[#94a3b8] mt-1">7-day free trial · [14 days with referral code]</p>
                   </div>
 
                   <ul className="mb-8 flex flex-col gap-2.5 flex-1">
                     {plan.features.map((f, j) => (
-                      <li key={j} className="flex items-start gap-3 text-sm text-slate-300">
-                        <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <li key={j} className="flex items-start gap-3 text-sm text-slate-600">
+                        <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#27DEBF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                         </svg>
-                        {f}
+                        <span className="font-medium">{f}</span>
                       </li>
                     ))}
                   </ul>
 
                   {isCurrent && isPaid ? (
-                    <div className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 py-3 text-sm font-semibold text-emerald-400">
+                    <div className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 py-3.5 text-sm font-bold text-emerald-700">
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                       </svg>
                       Current Plan
                     </div>
                   ) : isCurrent && isTrial ? (
-                    <div className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 py-3 text-sm font-semibold text-amber-400">
+                    <div className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl border border-amber-200 bg-amber-50 py-3.5 text-sm font-bold text-amber-700">
                       ✓ On Trial
                     </div>
                   ) : (
                     <a
                       href={loggedIn ? `/payment?plan=${plan.key}` : `/register?redirect=/payment&plan=${plan.key}`}
-                      className={`mt-auto block w-full rounded-xl bg-linear-to-r ${c.btn} py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-[1.02]`}
+                      className={`mt-auto block w-full rounded-xl py-3.5 text-center text-sm font-bold transition-all hover:scale-[1.02] ${c.btn}`}
                     >
                       {!loggedIn
                         ? 'Start Free Trial'
@@ -224,7 +225,7 @@ export default function Pricing() {
           })}
         </motion.div>
 
-        <p className="mt-10 text-center text-xs text-slate-600">
+        <p className="mt-12 text-center text-xs text-[#94a3b8]">
           All plans include AI Expert &amp; Refer&nbsp;&amp;&nbsp;Earn · Powered by PayU · Cancel anytime
         </p>
       </div>

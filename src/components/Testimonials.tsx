@@ -1,7 +1,7 @@
 'use client';
 
-import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const testimonials = [
   {
@@ -9,81 +9,152 @@ const testimonials = [
     store: 'Kirana Store',
     quote: 'Pehle hisaab rakhte rakhte dimaag kharab ho jaata tha. Ab toh mobile uthao aur bill banao.',
     initials: 'RG',
+    color: 'from-pink-500 to-rose-500',
   },
   {
     name: 'Sunita Agarwal',
     store: 'General Store',
     quote: 'Udhar ka hisaab kabhi mila nahi. Is app ne toh bahut easy kar diya.',
     initials: 'SA',
+    color: 'from-blue-500 to-indigo-500',
   },
   {
     name: 'Dr. Mahesh Patil',
     store: 'Medical Store',
     quote: 'AI se stock alert mil jaata hai. Kabhi expiry ka tension nahi.',
     initials: 'MP',
+    color: 'from-green-500 to-emerald-500',
+  },
+  {
+    name: 'Amit Verma',
+    store: 'Sweet Shop',
+    quote: 'Customer ko bill WhatsApp pe chala jata hai. Kaagaz ka kharch bach gaya aur customer bhi khush.',
+    initials: 'AV',
+    color: 'from-yellow-500 to-orange-500',
+  },
+  {
+    name: 'Vijay Singh',
+    store: 'Electrical Store',
+    quote: 'Mobile se hi inventory check ho jati hai. Dukan pe na hote hue bhi mujhe sab pata rehta hai.',
+    initials: 'VS',
+    color: 'from-purple-500 to-pink-500',
   },
 ];
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.15 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 export default function Testimonials() {
-  const { ref, visible } = useScrollReveal(0.1);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section id="benefits" className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto mb-16 max-w-2xl text-center">
-          <h2 className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl">
-            Trusted by Shop Owners
-          </h2>
-          <p className="mt-4 text-lg text-slate-400">
-            Hear from real businesses using Vyapar Sarthi every day.
-          </p>
-        </div>
-
-        <motion.div
-          ref={ref}
-          variants={container}
-          initial="hidden"
-          animate={visible ? 'show' : 'hidden'}
-          className="grid gap-8 md:grid-cols-3"
+    <section id="testimonials" className="relative overflow-hidden bg-white py-12">
+      {/* Wave SVG divider (white -> blue transition) */}
+      <div className="w-full overflow-hidden leading-none bg-white">
+        <svg
+          viewBox="0 0 1440 120"
+          className="relative block w-full h-[60px]"
+          preserveAspectRatio="none"
         >
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={i}
-              variants={item}
-              className="rounded-2xl border border-slate-700/50 bg-slate-800/40 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-slate-600/50 hover:shadow-xl hover:shadow-indigo-500/5"
+          <path
+            d="M0,0 C320,120 420,120 720,120 C1020,120 1120,0 1440,0 L1440,120 L0,120 Z"
+            fill="#2460DA"
+          />
+        </svg>
+      </div>
+
+      {/* Blue Panel */}
+      <div className="bg-[#2460DA] py-20 px-4 text-center">
+        <div className="max-w-4xl mx-auto relative px-4 sm:px-6">
+          {/* Quote Icon */}
+          <div className="flex justify-center mb-8">
+            <svg
+              className="h-12 w-12 text-[#27DEBF] opacity-80"
+              fill="currentColor"
+              viewBox="0 0 24 24"
             >
-              <div className="mb-4 flex gap-1">
-                {[...Array(5)].map((_, s) => (
-                  <svg key={s} className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-4.765 2.627-4.765 5.986h5.77v9.864h-11v-0.001zm-14 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-4.766 2.627-4.766 5.986h5.77v9.864h-11v-0.001z" />
+            </svg>
+          </div>
 
-              <p className="mb-6 text-base leading-relaxed text-slate-300">&ldquo;{t.quote}&rdquo;</p>
+          {/* Testimonial Quote */}
+          <div className="min-h-[140px] flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4 }}
+              >
+                <blockquote className="text-2xl md:text-3xl italic text-white font-medium max-w-3xl mx-auto leading-relaxed">
+                  &ldquo;{testimonials[activeIndex].quote}&rdquo;
+                </blockquote>
+                <p className="text-[#27DEBF] font-extrabold text-lg mt-6">
+                  — {testimonials[activeIndex].name}
+                </p>
+                <p className="text-blue-200 text-sm mt-1">
+                  {testimonials[activeIndex].store}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-              <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 text-sm font-bold text-white">
-                  {t.initials}
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-white">{t.name}</p>
-                  <p className="text-xs text-slate-500">{t.store}</p>
-                </div>
+          {/* Navigation Dots */}
+          <div className="flex gap-2 justify-center mt-8">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  activeIndex === i ? 'bg-[#27DEBF] w-8' : 'bg-white/40 hover:bg-white/60'
+                }`}
+                aria-label={`Go to testimonial ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Wave SVG divider (blue -> white transition) */}
+      <div className="w-full overflow-hidden leading-none bg-white">
+        <svg
+          viewBox="0 0 1440 120"
+          className="relative block w-full h-[60px]"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,120 C320,0 420,0 720,0 C1020,0 1120,120 1440,120 L1440,0 L0,0 Z"
+            fill="#2460DA"
+          />
+        </svg>
+      </div>
+
+      {/* Overlapping Avatar Row */}
+      <div className="flex justify-center -mt-10 relative z-10">
+        <div className="flex items-center -space-x-3 sm:-space-x-4 bg-white p-2.5 rounded-full shadow-lg border border-slate-100">
+          {testimonials.map((t, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className={`rounded-full border-2 transition-all duration-300 ${
+                activeIndex === i
+                  ? 'scale-110 border-[#27DEBF] z-20 shadow-md'
+                  : 'scale-90 border-transparent hover:scale-100 opacity-60 hover:opacity-100'
+              }`}
+            >
+              <div
+                className={`w-12 h-12 rounded-full bg-gradient-to-br ${t.color} flex items-center justify-center text-sm font-black text-white shadow-inner select-none`}
+              >
+                {t.initials}
               </div>
-            </motion.div>
+            </button>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

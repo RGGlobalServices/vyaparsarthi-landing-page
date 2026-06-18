@@ -50,13 +50,14 @@ export default function HowItWorks() {
   const { ref, visible } = useScrollReveal(0.1);
 
   return (
-    <section id="how-it-works" className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+    <section id="how-it-works" className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8 bg-white">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mb-16 max-w-2xl text-center">
-          <h2 className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl">
+          <h2 className="text-3xl font-bold text-[#1a2e2c] sm:text-4xl">
             How It Works
           </h2>
-          <p className="mt-4 text-lg text-slate-400">
+          <div className="w-20 h-1 bg-[#27DEBF] mx-auto mt-4 rounded-full" />
+          <p className="mt-4 text-lg text-[#667E7C]">
             Get your shop online in just 3 simple steps.
           </p>
         </div>
@@ -71,21 +72,21 @@ export default function HowItWorks() {
           {steps.map((step, i) => (
             <motion.div key={i} variants={item} className="relative">
               {i < steps.length - 1 && (
-                <div className="absolute right-0 top-12 hidden md:block">
-                  <svg className="h-8 w-8 text-indigo-500/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <div className="absolute right-0 top-16 hidden md:block">
+                  <svg className="h-8 w-8 text-[#27DEBF]/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
                 </div>
               )}
               <div className="flex flex-col items-center text-center">
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500/20 to-cyan-500/20 text-indigo-400">
-                  {step.icon}
-                </div>
-                <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 text-sm font-bold text-white">
+                <div className="text-6xl md:text-7xl font-extrabold text-[#27DEBF] mb-4 leading-none select-none opacity-80">
                   {step.number}
                 </div>
-                <h3 className="mb-2 text-xl font-semibold text-white">{step.title}</h3>
-                <p className="max-w-sm text-sm leading-relaxed text-slate-400">{step.desc}</p>
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#27DEBF]/10 text-[#204341]">
+                  {step.icon}
+                </div>
+                <h3 className="mb-2 text-xl font-bold text-[#1a2e2c]">{step.title}</h3>
+                <p className="max-w-sm text-sm leading-relaxed text-[#667E7C]">{step.desc}</p>
               </div>
             </motion.div>
           ))}

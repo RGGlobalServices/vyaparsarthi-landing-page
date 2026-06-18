@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const faqs = [
   {
     q: 'क्या यह app फ्री है?',
-    a: 'हाँ, हम एक 30 दिन का फ्री ट्रायल देते हैं जिसमें आप सभी features बिना किसी cost के use कर सकते हैं। उसके बाद आप अपने बजट के हिसाब से कोई भी plan चुन सकते हैं।',
+    a: 'हाँ, हम एक 7 दिन का फ्री ट्रायल देते हैं जिसमें आप सभी features बिना किसी cost के use कर सकते हैं। उसके बाद आप अपने बजट के हिसाब से कोई भी plan चुन सकते हैं।',
   },
   {
     q: 'कैसे रजिस्टर करूं?',
@@ -19,11 +19,11 @@ const faqs = [
   },
   {
     q: 'कितने products add कर सकते हैं?',
-    a: 'हमारे Small Store plan में 500 products तक, Big Store और Wholesale plans में unlimited products add कर सकते हैं। साथ ही Excel के ज़रिए bulk में products अपलोड करने की सुविधा भी है।',
+    a: 'हमारे Dukaan plan में unlimited products, Vyapar और Wholesale plans में भी unlimited products add कर सकते हैं। साथ ही Excel के ज़रिए bulk में products अपलोड करने की सुविधा भी है।',
   },
   {
     q: 'क्या मेरा डेटा safe है?',
-    a: 'बिल्कुल। आपका सारा डेटा end-to-end encrypted है और secure cloud servers पर store होता है। हम कभी भी आपके डेटा को तीसरे पक्ष के साथ साझा नहीं करते।',
+    a: 'बिल्कुल। आपका सारा डेटा end-to-end encrypted है और secure cloud servers पर store होता. हम कभी भी आपके डेटा को तीसरे पक्ष के साथ साझा नहीं करते।',
   },
   {
     q: 'क्या मुझे कुछ install करना होगा?',
@@ -36,13 +36,14 @@ export default function FAQ() {
   const { ref, visible } = useScrollReveal(0.1);
 
   return (
-    <section id="support" className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+    <section id="support" className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8 bg-white">
       <div className="mx-auto max-w-3xl">
         <div className="mx-auto mb-16 max-w-2xl text-center">
-          <h2 className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl">
+          <h2 className="text-3xl font-bold text-[#1a2e2c] sm:text-4xl">
             Frequently Asked Questions
           </h2>
-          <p className="mt-4 text-lg text-slate-400">
+          <div className="w-20 h-1 bg-[#27DEBF] mx-auto mt-4 rounded-full" />
+          <p className="mt-4 text-lg text-[#667E7C]">
             Common questions about Vyapar Sarthi.
           </p>
         </div>
@@ -52,27 +53,27 @@ export default function FAQ() {
           initial={{ opacity: 0, y: 20 }}
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="flex flex-col gap-3"
+          className="flex flex-col gap-4"
         >
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
               <div
                 key={i}
-                className={`rounded-2xl border transition-colors ${
+                className={`rounded-2xl border transition-all duration-300 ${
                   isOpen
-                    ? 'border-indigo-500/30 bg-slate-800/60'
-                    : 'border-slate-700/50 bg-slate-800/40 hover:border-slate-600/50'
+                    ? 'border-[#27DEBF]/30 bg-[#27DEBF]/5 shadow-sm'
+                    : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm'
                 }`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                   className="flex w-full items-center justify-between px-6 py-5 text-left"
                 >
-                  <span className="pr-4 text-base font-medium text-white">{faq.q}</span>
+                  <span className="pr-4 text-base font-bold text-[#1a2e2c]">{faq.q}</span>
                   <div
-                    className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full transition-colors ${
-                      isOpen ? 'bg-indigo-500/20 text-indigo-400' : 'bg-slate-700/50 text-slate-400'
+                    className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                      isOpen ? 'bg-[#27DEBF]/20 text-[#204341]' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
                     }`}
                   >
                     <svg
@@ -96,7 +97,7 @@ export default function FAQ() {
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                       className="overflow-hidden"
                     >
-                      <p className="border-t border-slate-700/50 px-6 pb-5 pt-4 text-sm leading-relaxed text-slate-400">
+                      <p className="border-t border-[#27DEBF]/10 px-6 pb-5 pt-4 text-sm leading-relaxed text-[#667E7C]">
                         {faq.a}
                       </p>
                     </motion.div>

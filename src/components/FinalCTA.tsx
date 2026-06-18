@@ -1,43 +1,62 @@
 'use client';
 
+import { useState } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { motion } from 'framer-motion';
 
 export default function FinalCTA() {
   const { ref, visible } = useScrollReveal(0.2);
+  const [email, setEmail] = useState('');
+
+  const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (typeof window !== 'undefined') {
+      const target = email ? `/register?email=${encodeURIComponent(email)}` : '/register';
+      window.location.href = target;
+    }
+  };
 
   return (
-    <section className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8 bg-white">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 30 }}
         animate={visible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="mx-auto max-w-4xl"
+        className="mx-auto max-w-4xl text-center"
       >
-        <div className="relative rounded-3xl bg-gradient-to-br from-indigo-600 via-indigo-600 to-cyan-600 p-8 text-center shadow-2xl shadow-indigo-500/25 sm:p-16">
-          <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.1),transparent_60%)]" />
+        <h2 className="text-3xl font-extrabold text-[#1a2e2c] sm:text-4xl lg:text-5xl">
+          Get Started Today!
+        </h2>
+        <div className="w-20 h-1 bg-[#27DEBF] mx-auto mt-5 mb-6 rounded-full" />
+        <p className="text-[#667E7C] text-lg max-w-lg mx-auto mb-10">
+          Join 2,000+ shop owners. Start your 7-day free trial now.
+        </p>
 
-          <div className="relative z-10">
-            <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-              Start Today — Completely Free
-            </h2>
-            <p className="mb-8 text-lg text-indigo-200">
-              Join 2,000+ shop owners. No credit card required.
-            </p>
+        {/* Pill-shaped email input form */}
+        <form
+          onSubmit={handleRegister}
+          className="max-w-lg mx-auto flex flex-col sm:flex-row bg-white rounded-2xl sm:rounded-full shadow-xl border border-slate-200 p-2 gap-2 sm:gap-0"
+        >
+          <input
+            type="email"
+            placeholder="Enter your email address..."
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="flex-1 px-6 py-3 rounded-xl sm:rounded-full focus:outline-none text-slate-700 placeholder-slate-400 font-medium"
+            required
+          />
+          <button
+            type="submit"
+            className="bg-[#27DEBF] text-[#204341] font-extrabold px-8 py-3.5 rounded-xl sm:rounded-full hover:bg-[#22C2A7] hover:scale-[1.02] active:scale-[0.98] transition-all"
+          >
+            Start Free Trial
+          </button>
+        </form>
 
-            <a
-              href="/register"
-              className="mb-6 inline-block rounded-xl bg-white px-10 py-4 text-base font-bold text-indigo-600 shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
-            >
-              Create Free Account
-            </a>
-
-            <p className="text-sm text-indigo-200/80">
-              No credit card required • Free forever plan • 24/7 Support
-            </p>
-          </div>
-        </div>
+        <p className="text-sm text-[#94a3b8] mt-6">
+          No credit card required • Free trial • Cancel anytime
+        </p>
       </motion.div>
     </section>
   );

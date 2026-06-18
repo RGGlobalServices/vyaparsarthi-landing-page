@@ -6,8 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { isLoggedIn, getUser, logout, getToken, apiGet } from '@/lib/auth';
 import { config } from '@/lib/config';
 
-// Map the raw subscription plan key to the display name used in the pricing
-// section, so the navbar and pricing cards stay consistent.
 const PLAN_DISPLAY: Record<string, string> = {
   shop: 'Dukaan',
   starter: 'Dukaan',
@@ -77,8 +75,6 @@ export default function Navbar() {
     ? user.name.split(' ').map(s => s[0]).join('').toUpperCase().slice(0, 2)
     : '?';
 
-  // Resolve app URL at render time from window.location so it never depends
-  // on baked-in env vars (which point to the wrong port on the landing page).
   const appUrl = (typeof window !== 'undefined' && window.location.port === '3000')
     ? `${window.location.protocol}//${window.location.hostname}:3001`
     : config.FRONTEND_URL;
@@ -93,16 +89,16 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-slate-900/80 backdrop-blur-xl shadow-lg shadow-indigo-500/5'
+          ? 'bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-100'
           : 'bg-transparent'
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-indigo-500 to-cyan-500 text-sm font-bold text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#27DEBF] text-sm font-bold text-[#204341] shadow-md shadow-[#27DEBF]/20">
             VS
           </div>
-          <span className="text-lg font-bold text-white">Vyapar Sarthi</span>
+          <span className={`text-lg font-bold transition-colors ${scrolled ? 'text-[#1a2e2c]' : 'text-[#1a2e2c]'}`}>Vyapar Sarthi</span>
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -110,7 +106,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-slate-300 transition-colors hover:text-white"
+              className="text-sm text-slate-600 transition-colors hover:text-[#27DEBF] font-medium"
             >
               {link.label}
             </a>
@@ -122,12 +118,12 @@ export default function Navbar() {
             <div className="relative">
               <button
                 onClick={() => setProfileOpen(!profileOpen)}
-                className="flex items-center gap-2 rounded-full bg-slate-800/80 border border-slate-700 p-1.5 pr-3 hover:bg-slate-700/50 transition"
+                className="flex items-center gap-2 rounded-full bg-white border border-slate-200 p-1.5 pr-3 hover:border-[#27DEBF]/50 hover:shadow-md transition-all"
               >
-                <div className="w-8 h-8 rounded-full bg-linear-to-br from-indigo-500 to-cyan-500 flex items-center justify-center text-sm font-bold text-white">
+                <div className="w-8 h-8 rounded-full bg-[#27DEBF] flex items-center justify-center text-sm font-bold text-[#204341]">
                   {initials}
                 </div>
-                <span className="text-sm text-slate-200 hidden lg:block">{user?.name?.split(' ')[0]}</span>
+                <span className="text-sm text-slate-700 hidden lg:block font-medium">{user?.name?.split(' ')[0]}</span>
                 <svg className="w-3 h-3 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
@@ -142,21 +138,21 @@ export default function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute right-0 top-full mt-2 w-60 z-50 rounded-2xl border border-slate-700 bg-slate-900/95 backdrop-blur-xl shadow-2xl shadow-black/50 overflow-hidden"
+                      className="absolute right-0 top-full mt-2 w-60 z-50 rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-200/50 overflow-hidden"
                     >
-                      <div className="px-4 py-3 border-b border-slate-700">
-                        <p className="text-sm font-medium text-white truncate">{user?.name || 'User'}</p>
-                        <p className="text-xs text-slate-400 truncate">{user?.email || ''}</p>
+                      <div className="px-4 py-3 border-b border-slate-100 bg-slate-50/50">
+                        <p className="text-sm font-medium text-[#1a2e2c] truncate">{user?.name || 'User'}</p>
+                        <p className="text-xs text-slate-500 truncate">{user?.email || ''}</p>
                       </div>
-                      <div className="px-4 py-2 border-b border-slate-700">
-                        <span className="text-xs text-slate-400">Current Plan</span>
-                        <p className="text-sm font-semibold text-emerald-400 flex items-center gap-2">
+                      <div className="px-4 py-2 border-b border-slate-100">
+                        <span className="text-xs text-slate-500">Current Plan</span>
+                        <p className="text-sm font-semibold text-[#27DEBF] flex items-center gap-2">
                           {plan}
                           {planStatus === 'trial' && (
-                            <span className="text-[9px] font-bold uppercase tracking-wide bg-amber-500/15 text-amber-400 ring-1 ring-amber-500/30 px-1.5 py-0.5 rounded">On Trial</span>
+                            <span className="text-[9px] font-bold uppercase tracking-wide bg-amber-500/10 text-amber-600 ring-1 ring-amber-500/30 px-1.5 py-0.5 rounded">On Trial</span>
                           )}
                           {planStatus === 'expired' && (
-                            <span className="text-[9px] font-bold uppercase tracking-wide bg-red-500/15 text-red-400 ring-1 ring-red-500/30 px-1.5 py-0.5 rounded">Expired</span>
+                            <span className="text-[9px] font-bold uppercase tracking-wide bg-red-500/10 text-red-500 ring-1 ring-red-500/30 px-1.5 py-0.5 rounded">Expired</span>
                           )}
                         </p>
                       </div>
@@ -166,14 +162,14 @@ export default function Navbar() {
                             key={item.label}
                             href={item.href}
                             onClick={() => setProfileOpen(false)}
-                            className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
+                            className="block px-4 py-2.5 text-sm text-slate-600 hover:bg-[#27DEBF]/5 hover:text-[#204341] transition"
                           >
                             {item.label}
                           </a>
                         ))}
                         <button
                           onClick={handleLogout}
-                          className="w-full text-left px-4 py-2.5 text-sm text-red-400 hover:bg-slate-800 hover:text-red-300 transition"
+                          className="w-full text-left px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 hover:text-red-600 transition"
                         >
                           Logout
                         </button>
@@ -187,13 +183,13 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="rounded-xl px-4 py-2 text-sm font-medium text-slate-300 transition-colors hover:text-white"
+                className="rounded-xl px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-[#204341]"
               >
                 Login
               </Link>
               <Link
                 href="/register"
-                className="rounded-xl bg-linear-to-r from-indigo-500 to-cyan-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-transform hover:scale-105"
+                className="rounded-xl bg-[#27DEBF] px-5 py-2 text-sm font-semibold text-[#204341] shadow-md shadow-[#27DEBF]/20 transition-all hover:shadow-lg hover:shadow-[#27DEBF]/30 hover:scale-105"
               >
                 Start Free Trial
               </Link>
@@ -208,15 +204,15 @@ export default function Navbar() {
         >
           <motion.span
             animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-            className="h-0.5 w-6 rounded-full bg-white"
+            className="h-0.5 w-6 rounded-full bg-[#1a2e2c]"
           />
           <motion.span
             animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="h-0.5 w-6 rounded-full bg-white"
+            className="h-0.5 w-6 rounded-full bg-[#1a2e2c]"
           />
           <motion.span
             animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-            className="h-0.5 w-6 rounded-full bg-white"
+            className="h-0.5 w-6 rounded-full bg-[#1a2e2c]"
           />
         </button>
       </div>
@@ -228,7 +224,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-y-0 right-0 z-40 flex w-72 flex-col bg-slate-900/95 backdrop-blur-2xl md:hidden"
+            className="fixed inset-y-0 right-0 z-40 flex w-72 flex-col bg-white/95 backdrop-blur-2xl shadow-2xl md:hidden border-l border-slate-100"
           >
             <div className="flex flex-col gap-2 px-6 pt-28">
               {navLinks.map((link) => (
@@ -236,18 +232,18 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-xl px-4 py-3 text-base text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                  className="rounded-xl px-4 py-3 text-base text-slate-700 transition-colors hover:bg-[#27DEBF]/5 hover:text-[#204341] font-medium"
                 >
                   {link.label}
                 </a>
               ))}
-              <hr className="my-4 border-slate-700" />
+              <hr className="my-4 border-slate-200" />
               {loggedIn ? (
                 <>
                   <div className="px-4 py-2">
-                    <p className="text-sm font-medium text-white">{user?.name || 'User'}</p>
-                    <p className="text-xs text-slate-400">{user?.email || ''}</p>
-                    <p className="text-xs text-emerald-400 mt-1">
+                    <p className="text-sm font-medium text-[#1a2e2c]">{user?.name || 'User'}</p>
+                    <p className="text-xs text-slate-500">{user?.email || ''}</p>
+                    <p className="text-xs text-[#27DEBF] mt-1 font-semibold">
                       Plan: {plan}{planStatus === 'trial' ? ' (On Trial)' : planStatus === 'expired' ? ' (Expired)' : ''}
                     </p>
                   </div>
@@ -256,14 +252,14 @@ export default function Navbar() {
                       key={item.label}
                       href={item.href}
                       onClick={() => setMenuOpen(false)}
-                      className="rounded-xl px-4 py-3 text-base text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                      className="rounded-xl px-4 py-3 text-base text-slate-700 transition-colors hover:bg-[#27DEBF]/5 hover:text-[#204341]"
                     >
                       {item.label}
                     </a>
                   ))}
                   <button
                     onClick={() => { handleLogout(); setMenuOpen(false); }}
-                    className="rounded-xl px-4 py-3 text-base text-red-400 text-left hover:bg-white/5 hover:text-red-300 transition"
+                    className="rounded-xl px-4 py-3 text-base text-red-500 text-left hover:bg-red-50 hover:text-red-600 transition"
                   >
                     Logout
                   </button>
@@ -273,14 +269,14 @@ export default function Navbar() {
                   <Link
                     href="/login"
                     onClick={() => setMenuOpen(false)}
-                    className="rounded-xl px-4 py-3 text-base text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                    className="rounded-xl px-4 py-3 text-base text-slate-700 transition-colors hover:bg-slate-50 hover:text-[#204341] font-medium"
                   >
                     Login
                   </Link>
                   <Link
                     href="/register"
                     onClick={() => setMenuOpen(false)}
-                    className="mt-2 rounded-xl bg-linear-to-r from-indigo-500 to-cyan-500 px-4 py-3 text-center text-base font-semibold text-white"
+                    className="mt-2 rounded-xl bg-[#27DEBF] px-4 py-3 text-center text-base font-semibold text-[#204341] shadow-md shadow-[#27DEBF]/20"
                   >
                     Start Free Trial
                   </Link>
@@ -293,7 +289,7 @@ export default function Navbar() {
 
       {menuOpen && (
         <div
-          className="fixed inset-0 z-30 bg-black/40 md:hidden"
+          className="fixed inset-0 z-30 bg-black/20 backdrop-blur-sm md:hidden"
           onClick={() => setMenuOpen(false)}
         />
       )}

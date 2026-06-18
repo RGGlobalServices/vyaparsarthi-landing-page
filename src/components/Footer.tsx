@@ -38,17 +38,18 @@ const paymentPartners = ["Google Pay", "PhonePe", "Paytm", "Razorpay"];
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 border-t border-transparent relative">
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-indigo-500 via-cyan-500 to-emerald-500" />
+    <footer className="bg-[#F3F9FF] border-t border-slate-200 relative">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-[#27DEBF]" />
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <h3 className="text-xl font-bold text-slate-100 mb-4">
-              <span className="bg-linear-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
-                Vyapar Sarthi
-              </span>
-            </h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+            <Link href="/" className="flex items-center gap-2 mb-4">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#27DEBF] text-sm font-bold text-[#204341] shadow-md shadow-[#27DEBF]/20">
+                VS
+              </div>
+              <span className="text-lg font-bold text-[#1a2e2c]">Vyapar Sarthi</span>
+            </Link>
+            <p className="text-[#667E7C] text-sm leading-relaxed mb-6">
               Apni Dukan Ko Smart Banao. India&apos;s #1 Kirana shop management app trusted by shop owners.
             </p>
             <div className="flex gap-3 mb-6">
@@ -58,18 +59,18 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm hover:border-indigo-500/50 hover:bg-indigo-500/10 transition"
+                  className="w-9 h-9 rounded-lg bg-white border border-slate-200 text-slate-500 flex items-center justify-center text-sm hover:border-[#27DEBF]/50 hover:bg-[#27DEBF]/10 hover:text-[#204341] transition shadow-sm"
                   aria-label={social.name}
                 >
                   {social.icon}
                 </a>
               ))}
             </div>
-            <div className="space-y-2 text-sm">
-              <a href="https://wa.me/919921142657" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition">
+            <div className="space-y-2 text-sm text-[#667E7C]">
+              <a href="https://wa.me/919921142657" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#27DEBF] transition">
                 <WaIcon /> WhatsApp: +91 9921142657
               </a>
-              <a href="mailto:gbroindustries@gmail.com" className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition">
+              <a href="mailto:gbroindustries@gmail.com" className="flex items-center gap-2 hover:text-[#27DEBF] transition">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 gbroindustries@gmail.com
               </a>
@@ -77,11 +78,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">Product</h4>
+            <h4 className="text-sm font-bold text-[#1a2e2c] uppercase tracking-wider mb-4">Product</h4>
             <ul className="space-y-3">
               {productLinks.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="text-slate-400 text-sm hover:text-indigo-400 transition">
+                  <a href={link.href} className="text-[#667E7C] text-sm hover:text-[#27DEBF] transition font-medium">
                     {link.name}
                   </a>
                 </li>
@@ -90,20 +91,20 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">Company</h4>
+            <h4 className="text-sm font-bold text-[#1a2e2c] uppercase tracking-wider mb-4">Company</h4>
             <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-slate-400 text-sm hover:text-indigo-400 transition">
+                  <Link href={link.href} className="text-[#667E7C] text-sm hover:text-[#27DEBF] transition font-medium">
                     {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 pt-4 border-t border-slate-800">
+            <div className="mt-6 pt-4 border-t border-slate-200">
               <a
                 href={`${config.FRONTEND_URL}/admin`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-indigo-500/20 to-cyan-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold hover:from-indigo-500/30 hover:to-cyan-500/30 transition"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#27DEBF]/10 border border-[#27DEBF]/20 text-[#204341] text-xs font-semibold hover:bg-[#27DEBF]/20 transition"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                 Admin Panel
@@ -112,11 +113,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">Support</h4>
+            <h4 className="text-sm font-bold text-[#1a2e2c] uppercase tracking-wider mb-4">Support</h4>
             <ul className="space-y-3">
               {supportLinks.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-slate-400 text-sm hover:text-indigo-400 transition">
+                  <Link href={link.href} className="text-[#667E7C] text-sm hover:text-[#27DEBF] transition font-medium">
                     {link.name}
                   </Link>
                 </li>
@@ -125,19 +126,19 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-slate-800">
+        <div className="mt-12 pt-8 border-t border-slate-200">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">Payment Partners</span>
-              <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <span className="text-xs text-[#94a3b8] font-bold uppercase tracking-wider">Payment Partners</span>
+              <div className="flex flex-wrap gap-2.5">
                 {paymentPartners.map((partner) => (
-                  <span key={partner} className="text-sm text-slate-400 bg-slate-800 px-3 py-1 rounded-lg">
+                  <span key={partner} className="text-xs text-slate-600 bg-white border border-slate-200 px-3 py-1 rounded-lg shadow-sm font-medium">
                     {partner}
                   </span>
                 ))}
               </div>
             </div>
-            <p className="text-slate-500 text-sm">
+            <p className="text-[#94a3b8] text-sm font-medium">
               &copy; 2026 Vyapar Sarthi. All rights reserved.
             </p>
           </div>
