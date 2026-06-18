@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { isLoggedIn, getUser, logout, getToken, apiGet } from '@/lib/auth';
-import { appUrl } from '@/lib/config';
+import { config } from '@/lib/config';
 
 // Map the raw subscription plan key to the display name used in the pricing
 // section, so the navbar and pricing cards stay consistent.
@@ -77,9 +77,16 @@ export default function Navbar() {
     ? user.name.split(' ').map(s => s[0]).join('').toUpperCase().slice(0, 2)
     : '?';
 
+  // Resolve app URL at render time from window.location so it never depends
+  // on baked-in env vars (which point to the wrong port on the landing page).
+  const appUrl = (typeof window !== 'undefined' && window.location.port === '3000')
+    ? `${window.location.protocol}//${window.location.hostname}:3001`
+    : config.FRONTEND_URL;
+
   const dropdownItems = [
-    { label: 'Dashboard', href: appUrl('/en') },
-    { label: 'App Profile', href: appUrl('/en/profile') },
+    { label: 'My Account', href: '/profile' },
+    { label: 'Dashboard', href: appUrl },
+    { label: 'App Profile', href: `${appUrl}/en/profile` },
   ];
 
   return (
@@ -178,18 +185,18 @@ export default function Navbar() {
             </div>
           ) : (
             <>
-              <a
-                href={appUrl('/en/login')}
+              <Link
+                href="/login"
                 className="rounded-xl px-4 py-2 text-sm font-medium text-slate-300 transition-colors hover:text-white"
               >
                 Login
-              </a>
-              <a
-                href={appUrl('/en/signup')}
+              </Link>
+              <Link
+                href="/register"
                 className="rounded-xl bg-linear-to-r from-indigo-500 to-cyan-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-transform hover:scale-105"
               >
                 Start Free Trial
-              </a>
+              </Link>
             </>
           )}
         </div>
@@ -263,20 +270,20 @@ export default function Navbar() {
                 </>
               ) : (
                 <>
-                  <a
-                    href={appUrl('/en/login')}
+                  <Link
+                    href="/login"
                     onClick={() => setMenuOpen(false)}
                     className="rounded-xl px-4 py-3 text-base text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
                   >
                     Login
-                  </a>
-                  <a
-                    href={appUrl('/en/signup')}
+                  </Link>
+                  <Link
+                    href="/register"
                     onClick={() => setMenuOpen(false)}
                     className="mt-2 rounded-xl bg-linear-to-r from-indigo-500 to-cyan-500 px-4 py-3 text-center text-base font-semibold text-white"
                   >
                     Start Free Trial
-                  </a>
+                  </Link>
                 </>
               )}
             </div>

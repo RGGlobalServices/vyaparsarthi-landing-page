@@ -22,15 +22,12 @@ function resolveApiBase(): string {
 // Resolve the app (dashboard) URL at runtime for the same reason as API_BASE.
 function resolveAppUrl(): string {
   const env = process.env.NEXT_PUBLIC_FRONTEND_URL ?? '';
-  if (env.startsWith('http')) return env.replace(/\/+$/, '');
+  if (env.startsWith('http')) return env;
   if (typeof window !== 'undefined') {
-    const { protocol, hostname } = window.location;
+    const { protocol, hostname, port } = window.location;
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
       return `${protocol}//${hostname}:3000`;
     }
-    // Production fallback: derive the app subdomain from the landing host,
-    // e.g. vyaparsarthii.com / www.vyaparsarthii.com -> app.vyaparsarthii.com
-    return `${protocol}//app.${hostname.replace(/^www\./, '')}`;
   }
   return env || 'http://localhost:3000';
 }
@@ -41,8 +38,3 @@ export const config = {
   LANDING_URL:  process.env.NEXT_PUBLIC_LANDING_URL  || 'http://localhost:3001',
   GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
 };
-
-// Full URL to a page on the app (dashboard) domain, e.g. appUrl('/en/login').
-export function appUrl(path: string = ''): string {
-  return `${resolveAppUrl()}${path}`;
-}
