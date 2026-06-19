@@ -89,7 +89,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-100'
+          ? 'bg-white shadow-sm border-b border-slate-100'
           : 'bg-transparent'
       }`}
     >
@@ -224,9 +224,9 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-y-0 right-0 z-60 flex w-72 flex-col bg-white shadow-2xl md:hidden border-l border-slate-200"
+            className="fixed inset-y-0 right-0 z-60 flex w-72 flex-col overflow-y-auto overscroll-contain bg-white shadow-2xl md:hidden border-l border-slate-200"
           >
-            <div className="flex flex-col gap-2 px-6 pt-28">
+            <div className="flex flex-col gap-2 px-6 pt-28 pb-10">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
