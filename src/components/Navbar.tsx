@@ -199,7 +199,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="relative z-70 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
           aria-label="Toggle menu"
         >
           <motion.span
@@ -224,7 +224,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-y-0 right-0 z-40 flex w-72 flex-col bg-white/95 backdrop-blur-2xl shadow-2xl md:hidden border-l border-slate-100"
+            className="fixed inset-y-0 right-0 z-60 flex w-72 flex-col bg-white shadow-2xl md:hidden border-l border-slate-200"
           >
             <div className="flex flex-col gap-2 px-6 pt-28">
               {navLinks.map((link) => (
@@ -289,7 +289,7 @@ export default function Navbar() {
 
       {menuOpen && (
         <div
-          className="fixed inset-0 z-30 bg-black/20 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-55 bg-black/40 md:hidden"
           onClick={() => setMenuOpen(false)}
         />
       )}
