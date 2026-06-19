@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { register, isLoggedIn, redirectAfterAuth, getRedirectParam } from "@/lib/auth";
 import { config } from "@/lib/config";
+import GoogleSignInButton from "@/components/GoogleSignInButton";
 
 // Resolve the app (dashboard) URL at runtime so it never depends on baked-in
 // env vars (which point to the wrong port on the landing page).
@@ -335,6 +336,14 @@ export default function RegisterPage() {
               )}
             </div>
           </form>
+
+          {config.GOOGLE_CLIENT_ID && (
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-700" /></div>
+              <div className="relative flex justify-center text-xs"><span className="bg-slate-800/50 px-4 text-slate-500">or sign up with</span></div>
+            </div>
+          )}
+          <GoogleSignInButton />
 
           <p className="mt-6 text-center text-sm text-slate-400">
             Already have an account?{" "}
