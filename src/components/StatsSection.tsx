@@ -34,7 +34,7 @@ export default function StatsSection() {
           });
         }
       } catch (err) {
-        console.error('Failed to fetch marketing stats:', err);
+        console.warn('Could not fetch marketing stats, using fallback defaults:', err instanceof Error ? err.message : err);
       } finally {
         setLoading(false);
       }

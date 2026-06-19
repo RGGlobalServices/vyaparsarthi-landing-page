@@ -155,18 +155,23 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   if (!post) notFound();
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      <div className="max-w-3xl mx-auto px-4">
-        <Link href="/blog" className="inline-flex items-center gap-1 text-sm text-slate-400 hover:text-indigo-400 transition mb-8">
+    <div className="min-h-screen relative pt-28 pb-20 bg-gradient-to-br from-white via-[#F3F9FF] to-[#E8F6F4] overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-20 right-[10%] w-72 h-72 rounded-full bg-[#27DEBF]/5 animate-float-slow -z-10" />
+      <div className="absolute top-40 left-[5%] w-48 h-48 rounded-full bg-[#2460DA]/5 animate-float -z-10" />
+      <div className="absolute bottom-32 right-[25%] w-36 h-36 rounded-full bg-[#27DEBF]/8 animate-float-slow -z-10" />
+
+      <div className="max-w-3xl mx-auto px-4 relative z-10">
+        <Link href="/blog" className="inline-flex items-center gap-1 text-sm text-[#2460DA] hover:text-[#27DEBF] font-bold transition mb-8">
           &larr; Back to Blog
         </Link>
-        <article>
-          <p className="text-xs text-slate-500 mb-3">{post.date}</p>
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-100 mb-6 leading-tight">
+        <article className="bg-white/80 border border-slate-200/80 rounded-3xl p-8 sm:p-10 shadow-xl shadow-[#204341]/2 backdrop-blur-sm">
+          <p className="text-xs text-[#667E7C] font-semibold mb-3">{post.date}</p>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-[#204341] mb-6 leading-tight tracking-tight">
             {post.title}
           </h1>
           <div
-            className="prose prose-invert prose-slate max-w-none prose-headings:text-slate-100 prose-headings:text-xl prose-headings:font-bold prose-headings:mt-8 prose-headings:mb-3 prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-4 prose-ul:text-slate-300 prose-li:mb-2 prose-a:text-indigo-400"
+            className="prose prose-slate max-w-none prose-headings:text-[#204341] prose-headings:text-xl prose-headings:font-bold prose-headings:mt-8 prose-headings:mb-3 prose-p:text-[#667E7C] prose-p:leading-relaxed prose-p:mb-4 prose-ul:text-[#667E7C] prose-li:mb-2 prose-a:text-[#2460DA] prose-strong:text-[#204341]"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>

@@ -33,41 +33,47 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-20">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen relative flex items-center justify-center px-4 py-24 bg-gradient-to-br from-[#F3F9FF] via-white to-[#E8F6F4] overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-20 right-[10%] w-72 h-72 rounded-full bg-[#27DEBF]/5 animate-float-slow -z-10" />
+      <div className="absolute top-40 left-[5%] w-48 h-48 rounded-full bg-[#2460DA]/5 animate-float -z-10" />
+      <div className="absolute bottom-32 right-[25%] w-36 h-36 rounded-full bg-[#27DEBF]/8 animate-float-slow -z-10" />
+      <div className="absolute top-[60%] left-[15%] w-24 h-24 rounded-full bg-[#2460DA]/5 animate-float -z-10" />
+
+      <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+          <h1 className="text-3.5xl font-extrabold text-[#204341] tracking-tight">
             Welcome Back
           </h1>
-          <p className="text-slate-400 mt-2">Sign in to your Vyapar Sarthi account</p>
+          <p className="text-[#667E7C] mt-2 text-sm font-medium">Sign in to your Vyapar Sarthi account</p>
         </div>
 
-        <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 backdrop-blur-sm">
+        <div className="bg-white/70 border border-slate-200/80 rounded-3xl p-8 sm:p-10 backdrop-blur-md shadow-2xl shadow-[#204341]/5 transition-all duration-300">
           {error && (
-            <div className="mb-4 p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+            <div className="mb-5 p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 text-sm font-medium">
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-1.5">
+              <label htmlFor="email" className="block text-sm font-bold text-[#204341]/80 mb-1.5">
                 Email Address
               </label>
               <input
                 id="email" type="email" value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 text-[#204341] placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-[#27DEBF]/10 focus:border-[#27DEBF] focus:bg-white transition-all duration-200"
                 placeholder="you@example.com" required
               />
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label htmlFor="password" className="block text-sm font-medium text-slate-300">
+                <label htmlFor="password" className="block text-sm font-bold text-[#204341]/80">
                   Password
                 </label>
-                <Link href="/forgot-password" className="text-xs text-indigo-400 hover:text-indigo-300 transition">
+                <Link href="/forgot-password" className="text-xs text-[#2460DA] hover:text-[#27DEBF] font-semibold transition">
                   Forgot Password?
                 </Link>
               </div>
@@ -77,13 +83,13 @@ export default function LoginPage() {
                   type={showPwd ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 pr-12 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                  className="w-full px-4 py-3 pr-12 rounded-xl bg-slate-50/50 border border-slate-200 text-[#204341] placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-[#27DEBF]/10 focus:border-[#27DEBF] focus:bg-white transition-all duration-200"
                   placeholder="Enter your password" required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPwd(v => !v)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#204341] transition"
                   tabIndex={-1}
                   aria-label={showPwd ? "Hide password" : "Show password"}
                 >
@@ -103,7 +109,7 @@ export default function LoginPage() {
 
             <button
               type="submit" disabled={loading}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-semibold text-lg shadow-lg hover:shadow-indigo-500/25 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="w-full py-3.5 rounded-xl bg-[#27DEBF] text-[#204341] font-bold text-lg shadow-lg shadow-[#27DEBF]/10 hover:bg-[#22C2A7] hover:scale-[1.01] hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               {loading ? "Signing in..." : "Sign In"}
             </button>
@@ -111,18 +117,18 @@ export default function LoginPage() {
 
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-slate-700" />
+              <div className="w-full border-t border-slate-200" />
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="bg-slate-800/50 px-4 text-slate-500">or continue with</span>
+              <span className="bg-white/80 px-4 text-slate-400">or continue with</span>
             </div>
           </div>
 
           <GoogleSignInButton />
 
-          <p className="mt-6 text-center text-sm text-slate-400">
+          <p className="mt-6 text-center text-sm text-[#667E7C] font-medium">
             Don&apos;t have an account?{" "}
-            <Link href={`/register${redirect ? `?redirect=${redirect}` : ''}`} className="text-indigo-400 hover:text-indigo-300 font-medium transition">
+            <Link href={`/register${redirect ? `?redirect=${redirect}` : ''}`} className="text-[#2460DA] hover:text-[#27DEBF] font-semibold transition">
               Create one
             </Link>
           </p>

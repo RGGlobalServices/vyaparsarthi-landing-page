@@ -35,27 +35,32 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      <div className="max-w-4xl mx-auto px-4">
+    <div className="min-h-screen relative pt-28 pb-20 bg-gradient-to-br from-white via-[#F3F9FF] to-[#E8F6F4] overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-20 right-[10%] w-72 h-72 rounded-full bg-[#27DEBF]/5 animate-float-slow -z-10" />
+      <div className="absolute top-40 left-[5%] w-48 h-48 rounded-full bg-[#2460DA]/5 animate-float -z-10" />
+      <div className="absolute bottom-32 right-[25%] w-36 h-36 rounded-full bg-[#27DEBF]/8 animate-float-slow -z-10" />
+
+      <div className="max-w-4xl mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
+            <span className="bg-gradient-to-r from-[#204341] to-[#27DEBF] bg-clip-text text-transparent">
               Blog
             </span>
           </h1>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-[#667E7C] text-lg max-w-2xl mx-auto font-medium">
             Tips, guides, and insights for Kirana shop owners to grow their business with smart technology.
           </p>
         </div>
 
         <div className="space-y-6">
           {posts.map((post) => (
-            <article key={post.slug} className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 transition group">
+            <article key={post.slug} className="bg-white/80 border border-slate-200/80 rounded-3xl p-6 md:p-8 hover:border-[#27DEBF]/50 hover:shadow-xl hover:scale-[1.01] transition-all duration-300 shadow-lg shadow-[#204341]/2 group">
               <Link href={`/blog/${post.slug}`}>
-                <p className="text-xs text-slate-500 mb-2">{post.date}</p>
-                <h2 className="text-xl font-semibold text-slate-100 group-hover:text-indigo-400 transition mb-2">{post.title}</h2>
-                <p className="text-slate-400 text-sm leading-relaxed">{post.excerpt}</p>
-                <span className="inline-block mt-3 text-xs text-indigo-400 font-medium group-hover:underline">Read More</span>
+                <p className="text-xs text-[#667E7C] font-semibold mb-2">{post.date}</p>
+                <h2 className="text-xl font-bold text-[#204341] group-hover:text-[#27DEBF] transition-colors mb-3 leading-snug">{post.title}</h2>
+                <p className="text-[#667E7C] text-sm leading-relaxed font-medium">{post.excerpt}</p>
+                <span className="inline-block mt-4 text-sm text-[#2460DA] font-bold group-hover:text-[#27DEBF] transition-colors group-hover:underline">Read More &rarr;</span>
               </Link>
             </article>
           ))}
