@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { isLoggedIn, getToken, apiGet } from '@/lib/auth';
 
 const plans = [
@@ -206,7 +207,7 @@ export default function Pricing() {
                       ✓ On Trial
                     </div>
                   ) : (
-                    <a
+                    <Link
                       href={loggedIn ? `/payment?plan=${plan.key}` : `/register?redirect=/payment&plan=${plan.key}`}
                       className={`mt-auto block w-full rounded-xl py-3.5 text-center text-sm font-bold transition-all hover:scale-[1.02] ${c.btn}`}
                     >
@@ -217,7 +218,7 @@ export default function Pricing() {
                           : currentPlan
                             ? (PLAN_RANK[plan.key] > PLAN_RANK[currentPlan] ? 'Upgrade Plan' : 'Switch Plan')
                             : `Subscribe — ₹${plan.price}/mo`}
-                    </a>
+                    </Link>
                   )}
                 </div>
               </motion.div>

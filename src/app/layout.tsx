@@ -11,6 +11,9 @@ const poppins = Poppins({ weight: ["400", "500", "600", "700"], subsets: ["latin
 export const metadata: Metadata = {
   title: "Vyapar Sarthi - Apni Dukan Ko Smart Banao",
   description: "India's #1 Kirana shop management app. Smart billing, inventory tracking, udhar management, and AI-powered insights for your store.",
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export const viewport: Viewport = {
