@@ -44,9 +44,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#27DEBF] text-sm font-bold text-[#204341] shadow-md shadow-[#27DEBF]/20">
-                VS
-              </div>
+              <img 
+                src="/icon.png" 
+                alt="Vyapar Sarthi Icon" 
+                className="h-8 w-8 object-contain rounded-lg shadow-sm"
+              />
               <span className="text-lg font-bold text-[#1a2e2c]">Vyapar Sarthi</span>
             </Link>
             <p className="text-[#667E7C] text-sm leading-relaxed mb-6">
