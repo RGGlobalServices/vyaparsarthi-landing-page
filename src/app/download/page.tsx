@@ -31,7 +31,7 @@ export default function DownloadPage() {
             <h2 className="text-2xl font-bold text-[#204341] mb-2">Android App</h2>
             <p className="text-sm text-slate-500 mb-8">For smartphones and tablets running Android 8.0 or higher.</p>
             <a 
-              href="/downloads/VyaparSarthi.apk" 
+              href="https://github.com/RGGlobalServices/vyaparsarthi-landing-page/raw/main/public/downloads/VyaparSarthi.apk" 
               download="Vyapar Sarthi.apk"
               className="mt-auto w-full py-4 rounded-xl font-bold text-white bg-green-500 hover:bg-green-600 transition-colors shadow-lg shadow-green-500/30 flex items-center justify-center gap-2"
             >
@@ -52,7 +52,7 @@ export default function DownloadPage() {
             <h2 className="text-2xl font-bold text-[#204341] mb-2">Windows Desktop</h2>
             <p className="text-sm text-slate-500 mb-8">For PCs and laptops running Windows 10 or Windows 11.</p>
             <a 
-              href="/downloads/VyaparSarthi-Setup.exe" 
+              href="https://github.com/RGGlobalServices/vyaparsarthi-landing-page/raw/main/public/downloads/VyaparSarthi-Setup.exe" 
               download="Vyapar Sarthi Setup.exe"
               className="mt-auto w-full py-4 rounded-xl font-bold text-white bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2"
             >
