@@ -5,6 +5,7 @@ import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
+import Link from "next/link";
 import StatsSection from "@/components/StatsSection";
 
 export default function Home() {
@@ -31,19 +32,40 @@ export default function Home() {
                 Billing, Inventory, Udhar — Sab Ek App Mein
               </p>
 
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
-                <a
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8">
+                <Link
                   href="/register"
                   className="px-8 py-3.5 rounded-xl bg-[#27DEBF] text-[#204341] font-bold text-lg text-center shadow-lg shadow-[#27DEBF]/20 hover:shadow-lg hover:shadow-[#27DEBF]/30 hover:scale-105 transition-all duration-300"
                 >
                   Start Free Trial
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#how-it-works"
                   className="px-8 py-3.5 rounded-xl border border-slate-300 text-slate-700 bg-white font-semibold text-lg text-center hover:bg-slate-50 hover:border-slate-400 transition-all duration-300"
                 >
                   See How It Works
-                </a>
+                </Link>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
+                <Link
+                  href="/download"
+                  className="px-6 py-3 rounded-xl border border-slate-300 text-slate-700 bg-white font-medium text-base flex items-center justify-center gap-2 hover:bg-slate-50 transition-all duration-300"
+                >
+                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.523 15.3414C17.523 15.3414 16.3262 15.3414 15.1294 15.3414C15.1294 15.3414 15.1294 17.7348 15.1294 17.7348C15.1294 18.3934 14.595 18.9278 13.9364 18.9278C13.2778 18.9278 12.7434 18.3934 12.7434 17.7348C12.7434 17.7348 12.7434 15.3414 12.7434 15.3414C12.7434 15.3414 11.2566 15.3414 11.2566 15.3414C11.2566 15.3414 11.2566 17.7348 11.2566 17.7348C11.2566 18.3934 10.7222 18.9278 10.0636 18.9278C9.405 18.9278 8.8706 18.3934 8.8706 17.7348C8.8706 17.7348 8.8706 15.3414 8.8706 15.3414C8.8706 15.3414 7.6738 15.3414 7.6738 15.3414C7.0152 15.3414 6.4808 14.807 6.4808 14.1484C6.4808 14.1484 6.4808 10.5574 6.4808 10.5574C6.4808 8.2432 8.3568 6.3672 10.671 6.3672C10.671 6.3672 13.329 6.3672 13.329 6.3672C15.6432 6.3672 17.5192 8.2432 17.5192 10.5574C17.5192 10.5574 17.5192 14.1484 17.5192 14.1484C17.5192 14.807 16.9848 15.3414 16.3262 15.3414C16.3262 15.3414 17.523 15.3414 17.523 15.3414ZM11.2566 9.3604C11.2566 8.7018 10.7222 8.1674 10.0636 8.1674C9.405 8.1674 8.8706 8.7018 8.8706 9.3604C8.8706 10.019 9.405 10.5534 10.0636 10.5534C10.7222 10.5534 11.2566 10.019 11.2566 9.3604ZM15.1294 9.3604C15.1294 8.7018 14.595 8.1674 13.9364 8.1674C13.2778 8.1674 12.7434 8.7018 12.7434 9.3604C12.7434 10.019 13.2778 10.5534 13.9364 10.5534C14.595 10.5534 15.1294 10.019 15.1294 9.3604Z"/>
+                  </svg>
+                  Download for Android
+                </Link>
+                <Link
+                  href="/download"
+                  className="px-6 py-3 rounded-xl border border-slate-300 text-slate-700 bg-white font-medium text-base flex items-center justify-center gap-2 hover:bg-slate-50 transition-all duration-300"
+                >
+                  <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                  </svg>
+                  Download for Windows
+                </Link>
               </div>
 
               <div className="flex items-center gap-4">
